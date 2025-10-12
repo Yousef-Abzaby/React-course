@@ -12,28 +12,23 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function Button({ timesClicked, handleClicks }) {
-        return (
-          <>
-            <button onClick={handleClicks}>
-              Clicked {timesClicked} {timesClicked === 1 ? "time" : "times"}
-            </button>
-          </>
-        );
-      }
       function App() {
-        const [timesClicked, setTimesClicked] = React.useState(0);
-        function handleClicks() {
-          setTimesClicked(timesClicked + 1);
+        const [inputText, setInputText] = React.useState("");
+        function handleChange(event) {
+          setInputText(event.target.value);
         }
-        function resetTimesClicked() {
-          setTimesClicked(0);
+        function resetInputText() {
+          setInputText("");
+        }
+        function giveExample() {
+          setInputText("Yousef");
         }
         return (
           <>
-            <Button timesClicked={timesClicked} handleClicks={handleClicks} />
-            <Button timesClicked={timesClicked} handleClicks={handleClicks} />
-            <button onClick={resetTimesClicked}>Reset</button>
+            <input type="text" onChange={handleChange} size="30" />
+            <button onClick={resetInputText}>Reset</button>
+            <button onClick={giveExample}>Example</button>
+            <p>Hello {inputText}</p>
           </>
         );
       }
