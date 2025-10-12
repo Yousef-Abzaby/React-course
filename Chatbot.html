@@ -12,91 +12,28 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function ChatInput({ chatMessages, setChatMessages }) {
-        const [inputText, setInputText] = React.useState("");
-        function saveInputText(event) {
-          setInputText(event.target.value);
-        }
-        function sendMessage() {
-          const response = Chatbot.getResponse(inputText);
-          setChatMessages([
-            ...chatMessages,
-            {
-              message: inputText,
-              sender: "user",
-              id: crypto.randomUUID(),
-            },
-            {
-              message: response,
-              sender: "robot",
-              id: crypto.randomUUID(),
-            },
-          ]);
-          setInputText("");
-        }
+      function Button({ timesClicked, handleClicks }) {
         return (
           <>
-            <input
-              placeholder="Send a message to Chatbot"
-              size="30"
-              onChange={saveInputText}
-              value={inputText}
-            />
-            <button onClick={sendMessage}>Send</button>
+            <button onClick={handleClicks}>
+              Clicked {timesClicked} {timesClicked === 1 ? "time" : "times"}
+            </button>
           </>
         );
       }
-
-      function ChatMessage({ message, sender }) {
-        return (
-          <div>
-            {sender === "robot" && <img src="robot.png" width="50" />}
-            {message}
-            {sender === "user" && <img src="user.png" width="50" />}
-          </div>
-        );
-      }
-
-      function ChatMessages({ chatMessages }) {
-        return (
-          <>
-            {chatMessages.map(({ message, sender, id }) => {
-              return <ChatMessage message={message} sender={sender} key={id} />;
-            })}
-          </>
-        );
-      }
-
       function App() {
-        const [chatMessages, setChatMessages] = React.useState([
-          {
-            message: "hello chatbot",
-            sender: "user",
-            id: "id1",
-          },
-          {
-            message: "Hello, how can I help you ?",
-            sender: "robot",
-            id: "id2",
-          },
-          {
-            message: "can you tell me the date of today?",
-            sender: "user",
-            id: "id3",
-          },
-          {
-            message: "Today is October 8th",
-            sender: "robot",
-            id: "id4",
-          },
-        ]);
+        const [timesClicked, setTimesClicked] = React.useState(0);
+        function handleClicks() {
+          setTimesClicked(timesClicked + 1);
+        }
+        function resetTimesClicked() {
+          setTimesClicked(0);
+        }
         return (
           <>
-            <ChatInput
-              chatMessages={chatMessages}
-              setChatMessages={setChatMessages}
-            />
-            <ChatMessages chatMessages={chatMessages} />
+            <Button timesClicked={timesClicked} handleClicks={handleClicks} />
+            <Button timesClicked={timesClicked} handleClicks={handleClicks} />
+            <button onClick={resetTimesClicked}>Reset</button>
           </>
         );
       }
