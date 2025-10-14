@@ -2,36 +2,60 @@
 <html>
   <head>
     <title>Chatbot</title>
-    <style></style>
+    <style>
+      button {
+        background-color: rgb(25, 135, 84);
+        border: none;
+        color: white;
+        font-family: Arial;
+        font-size: 15px;
+        padding: 10px 15px;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+        background-color: rgb(222, 222, 222);
+      }
+      body {
+        margin: 0 8px;
+      }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function Time() {
-        const [time, setTime] = React.useState(dayjs().format("HH:mm:ss"));
-        React.useEffect(() => {
-          setInterval(() => {
-            setTime(dayjs().format("HH:mm:ss"));
-            console.log("run code");
-          }, 1000);
-        }, [Time]);
-        return (
-          <>
-            <p>Current time: {time}</p>
-          </>
-        );
-      }
       function App() {
+        const buttonRef = React.useRef(null);
+        const [counter, setCounter] = React.useState(0);
+        function buttonClick() {
+          setCounter(counter + 1);
+        }
+
+        function resetCounter() {
+          setCounter(0);
+        }
+        function autoClick() {
+          setInterval(() => {
+            buttonRef.current.click();
+          }, 1000);
+        }
         return (
-          <>
-            <Time />
-          </>
+          <div>
+            <button onClick={buttonClick} ref={buttonRef}>
+              Clicked {counter} {counter == 1 ? "time" : "times"}
+            </button>
+            <button onClick={resetCounter}>Reset</button>
+            <button onClick={autoClick}>Auto Click</button>
+          </div>
         );
       }
       const container = document.querySelector(".js-container");
