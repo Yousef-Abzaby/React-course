@@ -1,0 +1,9 @@
+.chat-messages-container {
+  flex-grow: 1;
+  margin: 20px 0px 0px;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+.welcome-message {
+  color: rgb(100, 100, 100);
+}
