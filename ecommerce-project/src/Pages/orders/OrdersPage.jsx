@@ -3,8 +3,8 @@ import axious from "axios";
 import dayjs from "dayjs";
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router";
-import { Header } from "../components/Header.jsx";
-import { formatMoney } from "../utils/money.js";
+import { Header } from "../../components/Header.jsx";
+import { formatMoney } from "../../utils/money.js";
 
 export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);

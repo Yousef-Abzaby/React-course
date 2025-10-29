@@ -1,7 +1,7 @@
 import axious from "axios";
-import { Homepage } from "./Pages/Homepage.jsx";
+import { Homepage } from "./Pages/home/Homepage.jsx";
 import { CheckoutPage } from "./Pages/Checkout/CheckoutPage.jsx";
-import { OrdersPage } from "./Pages/OrdersPage.jsx";
+import { OrdersPage } from "./Pages/orders/OrdersPage.jsx";
 import { TrackingPage } from "./Pages/TrackingPage.jsx";
 import { NotFound } from "./Pages/NotFound.jsx";
 import { Routes, Route } from "react-router";
