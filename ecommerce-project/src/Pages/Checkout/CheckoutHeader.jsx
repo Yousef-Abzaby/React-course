@@ -1,6 +1,10 @@
 import "./CheckoutHeader.css";
 import { Link } from "react-router";
-export function CheckoutHeader() {
+export function CheckoutHeader({ cart }) {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
   return (
     <div className="checkout-header">
       <div className="header-content">
@@ -17,7 +21,7 @@ export function CheckoutHeader() {
         <div className="checkout-header-middle-section">
           Checkout (
           <Link className="return-to-home-link" to="/">
-            3 items
+            {cartQuantity} items
           </Link>
           )
         </div>
