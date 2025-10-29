@@ -8,9 +8,11 @@ import { Header } from "../../components/Header.jsx";
 export function Homepage({ cart }) {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axious.get("/api/products").then((response) => {
+    const getHomeData = async () => {
+      const response = await axious.get("/api/products");
       setProducts(response.data);
-    });
+    };
+    getHomeData();
   }, []);
   return (
     <>
